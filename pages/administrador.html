@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author " content="Tomas Agustin Budeguer" />
+    <meta
+      name="keywords"
+      content="series,peliculas,administrador,avengers,iron man, thor"
+    />
+    <meta name="description" content="Pagina de peliculas y series" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>CRUD Peliculas</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Peliculas</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="administrador.html"
+                  >Administrador</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container my-5">
+      <h2 class="display-2 text-center">Administrador de series</h2>
+      <hr />
+      <div class="mb-5">
+        <p class="fs-5">
+          Opciones:
+          <button
+            class="btn btn-outline-primary mx-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#modalForm"
+          >
+            <i class="bi bi-clipboard2-plus-fill fs-5"></i>
+          </button>
+        </p>
+      </div>
+      <div>
+        <h2 class="display-4">Lista de series</h2>
+        <hr />
+      </div>
+      <section>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Cod.</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">12</th>
+                <td>Avengers: Endgame</td>
+                <td>
+                  <p class="cortarText">
+                    Después de los eventos devastadores de 'Avengers: Infinity
+                    War', el universo está en ruinas debido a las acciones de
+                    Thanos, el Titán Loco. Con la ayuda de los aliados que
+                    quedaron, los Vengadores deberán reunirse una vez más para
+                    intentar deshacer sus acciones y restaurar el orden en el
+                    universo de una vez por todas, sin importar cuáles son las
+                    consecuencias.
+                  </p>
+                </td>
+                <td>
+                  <p class="cortarText">
+                    https://pics.filmaffinity.com/avengers_endgame-135478227-large.jpg
+                  </p>
+                </td>
+                <td>Ciencia Ficcion</td>
+                <td>
+                  <button class="btn btn-warning mb-1">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="bi bi-x-square"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>Iron Man 3</td>
+                <td>
+                  <p class="cortarText">
+                    El descarado y brillante empresario Tony Stark/Iron Man se
+                    enfrentará a un enemigo cuyo poder no conoce límites. Cuando
+                    Stark comprende que su enemigo ha destruido su universo
+                    personal, se embarca en una angustiosa búsqueda para
+                    encontrar a los responsables. Este viaje pondrá a prueba su
+                    entereza una y otra vez. Acorralado, Stark tendrá que
+                    sobrevivir por sus propios medios, confiando en su ingenio y
+                    su instinto para proteger a las personas que quiere.
+                  </p>
+                </td>
+                <td>
+                  <p class="cortarText">
+                    https://pics.filmaffinity.com/iron_man_3_aka_ironman_3-972235216-large.jpg
+                  </p>
+                </td>
+                <td>Ciencia Ficcion</td>
+                <td>
+                  <button class="btn btn-warning mb-1">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="bi bi-x-square"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>The Avengers</td>
+                <td>
+                  <p class="cortarText">
+                    Cuando un enemigo inesperado surge como una gran amenaza
+                    para la seguridad mundial, Nick Fury, director de la Agencia
+                    SHIELD, decide reclutar a un equipo para salvar al mundo de
+                    un desastre casi seguro. Adaptación del cómic de Marvel "Los
+                    Vengadores", el legendario grupo de superhéroes formado por
+                    Ironman, Hulk, Thor y el Capitán América entre otros.
+                  </p>
+                </td>
+                <td>
+                  <p class="cortarText">
+                    https://pics.filmaffinity.com/the_avengers-439499921-large.jpg
+                  </p>
+                </td>
+                <td>Ciencia Ficcion</td>
+                <td>
+                  <button class="btn btn-warning mb-1">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="bi bi-x-square"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>Thor: Love and Thunder</td>
+                <td>
+                  <p class="cortarText">
+                    El Dios del Trueno (Chris Hemsworth) emprende un viaje que
+                    no se parece en nada a lo que se ha enfrentado hasta ahora:
+                    una búsqueda de la paz interior. Pero el retiro de Thor se
+                    ve interrumpido por un asesino galáctico conocido como Gorr
+                    el Carnicero de Dioses (Christian Bale), que busca la
+                    extinción de los dioses. Para hacer frente a la amenaza,
+                    Thor solicita la ayuda del Rey Valkiria (Tessa Thompson), de
+                    Korg (Taika Waititi) y de su ex novia Jane Foster (Natalie
+                    Portman)
+                  </p>
+                </td>
+                <td>
+                  <p class="cortarText">
+                    https://pics.filmaffinity.com/thor_love_and_thunder-566116133-large.jpg
+                  </p>
+                </td>
+                <td>Ciencia Ficcion</td>
+                <td>
+                  <button class="btn btn-warning mb-1">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="bi bi-x-square"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>Doctor Strange in the Multiverse of Madness</td>
+                <td>
+                  <p class="cortarText">
+                    Viaja a lo desconocido con el Doctor Strange, quien, con la
+                    ayuda de tanto antiguos como nuevos aliados místicos,
+                    recorre las complejas y peligrosas realidades alternativas
+                    del multiverso para enfrentarse a un nuevo y misterioso
+                    adversario.
+                  </p>
+                </td>
+                <td>
+                  <p class="cortarText">
+                    https://pics.filmaffinity.com/doctor_strange_in_the_multiverse_of_madness-610981386-large.jpg
+                  </p>
+                </td>
+                <td>Ciencia Ficcion</td>
+                <td>
+                  <button class="btn btn-warning mb-1">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="bi bi-x-square"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Ventana Modal Formulario -->
+      <div
+        class="modal fade"
+        id="modalForm"
+        tabindex="-1"
+        aria-labelledby="modalFormLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalFormLabel">Administrar Serie</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="codigo" class="form-label">Codigo</label>
+                  <input type="number" class="form-control" id="codigo"  required placeholder="123"/>
+                </div>
+                <div class="mb-3">
+                  <label for="titulo" class="form-label">Titulo</label>
+                  <input type="text" class="form-control" id="titulo"  required placeholder="Ej: Robotech"/>
+                </div>
+                <div class="mb-3">
+                  <label for="descripcion" class="form-label"
+                    >Descripcion</label
+                  >
+                  <input type="text" class="form-control" id="descripcion"  required placeholder="Ej:Lorem ipsumn dolor sit amet."/>
+                </div>
+                <div class="mb-3">
+                  <label for="imagen" class="form-label">Imagen</label>
+                  <input type="url" class="form-control" id="imagen"  required placeholder="Ej: http://127.0.0.1:5500/pages/administrador.html"/>
+                </div>
+                <div class="mb-3">
+                  <label for="genero" class="form-label">Genero</label>
+                  <select id="genero" class="form-control" required>
+                    <option value="">Seleccione una opcion</option>
+                    <option value="H">Ciencia Ficcion</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-dark text-white text-center py-4">
+      <p>&copy; Todos los derechos reservados</p>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
