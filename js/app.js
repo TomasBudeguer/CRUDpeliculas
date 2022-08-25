@@ -83,6 +83,44 @@ const btnCrearPelicula = document.querySelector("#btnCrearPelicula");
 // agregar los eventos
 btnCrearPelicula.addEventListener("click", mostrarFormulario);
 
+cargaInicial()
+
+function cargaInicial(){
+  if(listaPeliculas.length > 0){
+    // dibujar filas en la tabla
+    listaPeliculas.map((pelicula)=>{crearFila(pelicula)})
+  }
+  // else mostrar un mensaje al usuario que no hay elementos para mostrar
+}
+
+function crearFila(pelicula){
+  console.log(pelicula)
+  let tablaPelicula = document.querySelector('#tablaPelicula')
+  tablaPelicula.innerHTML += `<tr>
+  <th scope="row">${pelicula.codigo}</th>
+  <td>${pelicula.titulo}</td>
+  <td>
+    <p class="cortarText">
+      ${pelicula.descripcion}
+    </p>
+  </td>
+  <td>
+    <p class="cortarText">
+      ${pelicula.imagen}
+    </p>
+  </td>
+  <td>${pelicula.genero}</td>
+  <td>
+    <button class="btn btn-warning mb-1">
+      <i class="bi bi-pencil-square"></i>
+    </button>
+    <button class="btn btn-danger">
+      <i class="bi bi-x-square"></i>
+    </button>
+  </td>
+</tr>`
+}
+
 function mostrarFormulario() {
   modalFormPelicula.show();
   codigo.value = uuidv4();
