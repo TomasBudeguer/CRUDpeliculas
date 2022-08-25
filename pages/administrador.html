@@ -67,8 +67,7 @@
           <button
             class="btn btn-outline-primary mx-2"
             type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#modalForm"
+            id="btnCrearPelicula"
           >
             <i class="bi bi-clipboard2-plus-fill fs-5"></i>
           </button>
@@ -245,15 +244,15 @@
       <!-- Ventana Modal Formulario -->
       <div
         class="modal fade"
-        id="modalForm"
+        id="modalPelicula"
         tabindex="-1"
-        aria-labelledby="modalFormLabel"
+        aria-labelledby="modalPeliculaLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalFormLabel">Administrar Serie</h5>
+              <h5 class="modal-title" id="modalPeliculaLabel">Administrar Serie</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -266,10 +265,11 @@
                 <div class="mb-3">
                   <label for="codigo" class="form-label">Codigo</label>
                   <input
-                    type="number"
+                    type="text"
                     class="form-control"
                     id="codigo"
                     placeholder="123"
+                    disabled
                   />
                 </div>
                 <div class="mb-3">
@@ -306,6 +306,10 @@
                   <select id="genero" class="form-control">
                     <option value="">Seleccione una opcion</option>
                     <option value="CyF">Ciencia Ficcion</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Accion">Accion</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
                   </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
@@ -323,6 +327,7 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
     <script src="../js/app.js" type="module"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 export function validarCodigo(input) {
-  let expReg = /^[\d]{1,3}$/;
+  let expReg = /^[\w]{1,30}$/;
   if (expReg.test(input.value)) {
     input.className = "form-control is-valid";
     return true;

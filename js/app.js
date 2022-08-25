@@ -5,6 +5,7 @@ import {
   validarURL,
   validarGenero,
 } from "./helpers.js";
+import Pelicula from "./classPelicula.js";
 
 let formAdmin = document.querySelector("#formAdmin");
 let codigo = document.querySelector("#codigo");
@@ -13,10 +14,10 @@ let descripcion = document.querySelector("#descripcion");
 let url = document.querySelector("#url");
 let genero = document.querySelector("#genero");
 
-formAdmin.addEventListener("submit", crearSerie);
-codigo.addEventListener("blur", () => {
-  validarCodigo(codigo);
-});
+formAdmin.addEventListener("submit", crearPelicula);
+// codigo.addEventListener("blur", () => {
+//   validarCodigo(codigo);
+// });
 titulo.addEventListener("blur", () => {
   validarTitulo(titulo);
 });
@@ -30,17 +31,29 @@ genero.addEventListener("blur", () => {
   validarGenero(genero);
 });
 
-function crearSerie(e) {
+function crearPelicula(e) {
   e.preventDefault();
   if (
-    validarCodigo(codigo) &&
+    // validarCodigo(codigo) &&
     validarTitulo(titulo) &&
     validarDescripcion(descripcion) &&
     validarURL(url) &&
     validarGenero(genero)
   ) {
-    console.log("Serie creada");
+    const nuevaPelicula = new Pelicula(
+      codigo.value,
+      titulo.value,
+      descripcion.value,
+      url.value,
+      genero.value
+    );
+    console.log(nuevaPelicula);
+    listaPeliculas.push(nuevaPelicula);
+    console.log(listaPeliculas);
+    // guardar datos en el localstorage
+    guardarDatosEnLS();
     limpiarFormulario();
+    modalFormPelicula.hide();
   } else {
     alert("Corregir datos");
   }
@@ -55,4 +68,26 @@ function limpiarFormulario() {
   for (let i = 0; i < arrayInput.length; i++) {
     arrayInput[i].className = "form-control";
   }
+}
+
+//declarar variabes
+
+let listaPeliculas =
+  JSON.parse(localStorage.getItem("listaPeliculasKey")) || [];
+
+const modalFormPelicula = new bootstrap.Modal(
+  document.querySelector("#modalPelicula")
+);
+const btnCrearPelicula = document.querySelector("#btnCrearPelicula");
+
+// agregar los eventos
+btnCrearPelicula.addEventListener("click", mostrarFormulario);
+
+function mostrarFormulario() {
+  modalFormPelicula.show();
+  codigo.value = uuidv4();
+}
+
+function guardarDatosEnLS() {
+  localStorage.setItem("listaPeliculasKey", JSON.stringify(listaPeliculas));
 }
