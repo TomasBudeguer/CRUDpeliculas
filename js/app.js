@@ -52,10 +52,12 @@ function crearPelicula(e) {
     console.log(listaPeliculas);
     // guardar datos en el localstorage
     guardarDatosEnLS();
+    // limpiar formulario
     limpiarFormulario();
+    // dibujar peli en la tabla
+    crearFila(nuevaPelicula)
+    // cerrar ventana modal
     modalFormPelicula.hide();
-  } else {
-    alert("Corregir datos");
   }
 }
 
