@@ -56,6 +56,12 @@ function crearPelicula(e) {
     limpiarFormulario();
     // dibujar peli en la tabla
     crearFila(nuevaPelicula)
+    // mostrar mensaje al usuario
+    Swal.fire(
+      'Pelicula creada!',
+      'La pelicula fue creada correctamente!',
+      'success'
+    )
     // cerrar ventana modal
     modalFormPelicula.hide();
   }
