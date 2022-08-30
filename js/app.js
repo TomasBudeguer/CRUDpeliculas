@@ -55,13 +55,13 @@ function crearPelicula(e) {
     // limpiar formulario
     limpiarFormulario();
     // dibujar peli en la tabla
-    crearFila(nuevaPelicula)
+    crearFila(nuevaPelicula);
     // mostrar mensaje al usuario
     Swal.fire(
-      'Pelicula creada!',
-      'La pelicula fue creada correctamente!',
-      'success'
-    )
+      "Pelicula creada!",
+      "La pelicula fue creada correctamente!",
+      "success"
+    );
     // cerrar ventana modal
     modalFormPelicula.hide();
   }
@@ -91,19 +91,21 @@ const btnCrearPelicula = document.querySelector("#btnCrearPelicula");
 // agregar los eventos
 btnCrearPelicula.addEventListener("click", mostrarFormulario);
 
-cargaInicial()
+cargaInicial();
 
-function cargaInicial(){
-  if(listaPeliculas.length > 0){
+function cargaInicial() {
+  if (listaPeliculas.length > 0) {
     // dibujar filas en la tabla
-    listaPeliculas.map((pelicula)=>{crearFila(pelicula)})
+    listaPeliculas.map((pelicula) => {
+      crearFila(pelicula);
+    });
   }
   // else mostrar un mensaje al usuario que no hay elementos para mostrar
 }
 
-function crearFila(pelicula){
-  console.log(pelicula)
-  let tablaPelicula = document.querySelector('#tablaPelicula')
+function crearFila(pelicula) {
+  // console.log(pelicula)
+  let tablaPelicula = document.querySelector("#tablaPelicula");
   tablaPelicula.innerHTML += `<tr>
   <th scope="row">${pelicula.codigo}</th>
   <td>${pelicula.titulo}</td>
@@ -122,11 +124,11 @@ function crearFila(pelicula){
     <button class="btn btn-warning mb-1">
       <i class="bi bi-pencil-square"></i>
     </button>
-    <button class="btn btn-danger">
+    <button class="btn btn-danger" onclick="borrarPelicula('${pelicula.codigo}')">
       <i class="bi bi-x-square"></i>
     </button>
   </td>
-</tr>`
+</tr>`;
 }
 
 function mostrarFormulario() {
@@ -136,4 +138,40 @@ function mostrarFormulario() {
 
 function guardarDatosEnLS() {
   localStorage.setItem("listaPeliculasKey", JSON.stringify(listaPeliculas));
+}
+
+window.borrarPelicula = function (codigo) {
+  console.log(codigo);
+  // buscar en listaPeliculas el codigo de la peli qeu quiero borrar
+  // Opcion 1: findIndex, splice(posicion, cantidad de elementos a borrar)
+  // Opcion 2: filter
+
+  //Opcion mia
+
+  // console.log(listaPeliculas.findIndex((cod)=>cod.codigo === codigo))
+  // let itemCod = listaPeliculas.findIndex((cod)=>cod.codigo === codigo)
+  // listaPeliculas.splice(itemCod, 1)
+
+  //Opcion en clase
+
+  // let copiaListaPeliculas = listaPeliculas.filter((pelicula)=>{return pelicula.codigo != codigo})
+  let copiaListaPeliculas = listaPeliculas.filter(
+    (pelicula) => pelicula.codigo != codigo
+  ); //return implicito
+  console.log(copiaListaPeliculas);
+
+  // tarea borrar del arreglo listaPeliculas el elemento del codigo recbidio por parametro
+  listaPeliculas = copiaListaPeliculas;
+
+  // actualizar el localStorage
+  guardarDatosEnLS();
+
+  // actualizar la tabla
+  actualizarTabla();
+};
+
+function actualizarTabla() {
+  let tablaPelicula = document.querySelector("#tablaPelicula");
+  tablaPelicula.innerHTML = "";
+  cargaInicial()
 }
