@@ -141,37 +141,50 @@ function guardarDatosEnLS() {
 }
 
 window.borrarPelicula = function (codigo) {
-  console.log(codigo);
-  // buscar en listaPeliculas el codigo de la peli qeu quiero borrar
-  // Opcion 1: findIndex, splice(posicion, cantidad de elementos a borrar)
-  // Opcion 2: filter
+  Swal.fire({
+    title: "Eliminar pelicula",
+    text: "Esta por eliminar la pelicula señeccionada, no puedes revertir este paso",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Borrar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    // console.log(result);
+    if (result.isConfirmed) {
+      // aqui agregar la logica para borrar
 
-  //Opcion mia
+      // buscar en listaPeliculas el codigo de la peli qeu quiero borrar
+      // Opcion 1: findIndex, splice(posicion, cantidad de elementos a borrar)
+      // Opcion 2: filter
 
-  // console.log(listaPeliculas.findIndex((cod)=>cod.codigo === codigo))
-  // let itemCod = listaPeliculas.findIndex((cod)=>cod.codigo === codigo)
-  // listaPeliculas.splice(itemCod, 1)
+      //Opcion mia
+      // console.log(listaPeliculas.findIndex((cod)=>cod.codigo === codigo))
+      // let itemCod = listaPeliculas.findIndex((cod)=>cod.codigo === codigo)
+      // listaPeliculas.splice(itemCod, 1)
 
-  //Opcion en clase
+      //Opcion en clase
+      // let copiaListaPeliculas = listaPeliculas.filter((pelicula)=>{return pelicula.codigo != codigo})
+      let copiaListaPeliculas = listaPeliculas.filter(
+        (pelicula) => pelicula.codigo != codigo
+      ); //return implicito
 
-  // let copiaListaPeliculas = listaPeliculas.filter((pelicula)=>{return pelicula.codigo != codigo})
-  let copiaListaPeliculas = listaPeliculas.filter(
-    (pelicula) => pelicula.codigo != codigo
-  ); //return implicito
-  console.log(copiaListaPeliculas);
+      // tarea borrar del arreglo listaPeliculas el elemento del codigo recbidio por parametro
+      listaPeliculas = copiaListaPeliculas;
 
-  // tarea borrar del arreglo listaPeliculas el elemento del codigo recbidio por parametro
-  listaPeliculas = copiaListaPeliculas;
+      // actualizar el localStorage
+      guardarDatosEnLS();
 
-  // actualizar el localStorage
-  guardarDatosEnLS();
-
-  // actualizar la tabla
-  actualizarTabla();
+      // actualizar la tabla
+      actualizarTabla();
+      Swal.fire("Pelicula eliminada!", "La pelicula fue borrada exitosamente", "success");
+    }
+  });
 };
 
 function actualizarTabla() {
   let tablaPelicula = document.querySelector("#tablaPelicula");
   tablaPelicula.innerHTML = "";
-  cargaInicial()
+  cargaInicial();
 }
