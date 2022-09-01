@@ -13,6 +13,7 @@ let titulo = document.querySelector("#titulo");
 let descripcion = document.querySelector("#descripcion");
 let url = document.querySelector("#url");
 let genero = document.querySelector("#genero");
+let peliculaNueva = true; // si pelicula nueva es true, entonces crear peli, caso contrario actualizar una peli
 
 formAdmin.addEventListener("submit", crearPelicula);
 // codigo.addEventListener("blur", () => {
@@ -34,37 +35,44 @@ genero.addEventListener("blur", () => {
 function crearPelicula(e) {
   e.preventDefault();
   if (
+    peliculaNueva &&
     // validarCodigo(codigo) &&
     validarTitulo(titulo) &&
     validarDescripcion(descripcion) &&
     validarURL(url) &&
     validarGenero(genero)
   ) {
-    const nuevaPelicula = new Pelicula(
-      codigo.value,
-      titulo.value,
-      descripcion.value,
-      url.value,
-      genero.value
-    );
-    console.log(nuevaPelicula);
-    listaPeliculas.push(nuevaPelicula);
-    console.log(listaPeliculas);
-    // guardar datos en el localstorage
-    guardarDatosEnLS();
-    // limpiar formulario
-    limpiarFormulario();
-    // dibujar peli en la tabla
-    crearFila(nuevaPelicula);
-    // mostrar mensaje al usuario
-    Swal.fire(
-      "Pelicula creada!",
-      "La pelicula fue creada correctamente!",
-      "success"
-    );
-    // cerrar ventana modal
-    modalFormPelicula.hide();
+    generarPelicula();
+  } else {
+    actualizarPelicula();
   }
+}
+
+function generarPelicula() {
+  const nuevaPelicula = new Pelicula(
+    codigo.value,
+    titulo.value,
+    descripcion.value,
+    url.value,
+    genero.value
+  );
+  console.log(nuevaPelicula);
+  listaPeliculas.push(nuevaPelicula);
+  console.log(listaPeliculas);
+  // guardar datos en el localstorage
+  guardarDatosEnLS();
+  // limpiar formulario
+  limpiarFormulario();
+  // dibujar peli en la tabla
+  crearFila(nuevaPelicula);
+  // mostrar mensaje al usuario
+  Swal.fire(
+    "Pelicula creada!",
+    "La pelicula fue creada correctamente!",
+    "success"
+  );
+  // cerrar ventana modal
+  modalFormPelicula.hide();
 }
 
 function limpiarFormulario() {
@@ -132,6 +140,7 @@ function crearFila(pelicula) {
 }
 
 function mostrarFormulario() {
+  peliculaNueva = true;
   modalFormPelicula.show();
   codigo.value = uuidv4();
 }
@@ -178,7 +187,11 @@ window.borrarPelicula = function (codigo) {
 
       // actualizar la tabla
       actualizarTabla();
-      Swal.fire("Pelicula eliminada!", "La pelicula fue borrada exitosamente", "success");
+      Swal.fire(
+        "Pelicula eliminada!",
+        "La pelicula fue borrada exitosamente",
+        "success"
+      );
     }
   });
 };
@@ -189,15 +202,43 @@ function actualizarTabla() {
   cargaInicial();
 }
 
-window.editarPelicula = function (codigoBuscado){
+window.editarPelicula = function (codigoBuscado) {
+  peliculaNueva = false;
   // mostrar ventana modal
-  modalFormPelicula.show()
+  modalFormPelicula.show();
   // buscar la pelicula que quiero mostrar en el formulario
-  let peliBuscada = listaPeliculas.find((pelicula)=>pelicula.codigo === codigoBuscado)
+  let peliBuscada = listaPeliculas.find(
+    (pelicula) => pelicula.codigo === codigoBuscado
+  );
   // cargar el formulario con los datos
-  codigo.value = peliBuscada.codigo
-  titulo.value = peliBuscada.titulo
-  descripcion.value = peliBuscada.descripcion
-  url.value = peliBuscada.imagen
-  genero.value = peliBuscada.genero
+  codigo.value = peliBuscada.codigo;
+  titulo.value = peliBuscada.titulo;
+  descripcion.value = peliBuscada.descripcion;
+  url.value = peliBuscada.imagen;
+  genero.value = peliBuscada.genero;
+};
+
+function actualizarPelicula() {
+  console.log("actualizando datos de la peli...");
+  // buscar la posicion pelicula que estoy editando en el arreglo de peliculas (codigo)
+  // console.log(codigo.value)
+
+  // console.log(listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo.value))
+  let posicionPelicula = listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo.value)
+  console.log(posicionPelicula)
+
+  // actualizar todos los datos del objeto (listaPeliculas[0(posicion que tengo que encontrar)].titulo = titulo.value;)
+  listaPeliculas[posicionPelicula].titulo = titulo.value
+  listaPeliculas[posicionPelicula].descripcion = descripcion.value
+  listaPeliculas[posicionPelicula].imagen = url.value
+  listaPeliculas[posicionPelicula].genero = genero.value
+
+  // actualizar el localStorage
+  guardarDatosEnLS()
+
+  // actualizar la tabla
+  actualizarTabla()
+
+  // cerrar ventana modal
+  modalFormPelicula.hide()
 }
