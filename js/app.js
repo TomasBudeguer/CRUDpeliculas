@@ -141,6 +141,8 @@ function crearFila(pelicula) {
 
 function mostrarFormulario() {
   peliculaNueva = true;
+  // limpiar el formulario
+  limpiarFormulario()
   modalFormPelicula.show();
   codigo.value = uuidv4();
 }
@@ -241,4 +243,7 @@ function actualizarPelicula() {
 
   // cerrar ventana modal
   modalFormPelicula.hide()
+
+  // limpiar el formulario
+  limpiarFormulario()
 }
